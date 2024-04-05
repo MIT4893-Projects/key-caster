@@ -68,6 +68,10 @@ class Worker(QThread):
             "enter": "󰌑 ",
             "backspace": "󰌍 ",
             "tab": "󰌒 ",
+            "up": "󰬭 ",
+            "down": "󰬧 ",
+            "left": "󰬩 ",
+            "right": "󰬫 ",
         }
 
         last = keyboard.KeyboardEvent(event_type=keyboard.KEY_UP, scan_code=0)
