@@ -86,7 +86,7 @@ class Worker(QThread):
                 self.mod_dis.set_modifiers(e.modifiers)
                 self.key_dis.add_key(e.name)
             elif is_modifier and is_key_down:
-                self.mod_dis.set_modifiers((e.name,))
+                self.mod_dis.set_modifiers(e.modifiers)
             elif is_modifier and not is_key_down:
                 self.mod_dis.reset_modifiers((e.name,))
 
