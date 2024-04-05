@@ -61,10 +61,18 @@ class Worker(QThread):
         self.mod_dis = mod_dis
 
     def run(self):
+        map_keys = {
+            "space": "_",
+            "enter": "󰌑",
+            "backspace": "󰌍",
+            "tab": "󰌒",
+        }
         while True:
             last = keyboard.KeyboardEvent(event_type=keyboard.KEY_UP, scan_code=0)
             while True:
                 e = keyboard.read_event()
+                if e.name in map_keys:
+                    e.name = map_keys[e.name]
                 if (
                     len(e.name) == 1
                     and e.event_type == keyboard.KEY_DOWN

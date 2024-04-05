@@ -7,7 +7,6 @@ class KeyDisplayer(QLabel):
         super().__init__(parent)
         self.setAlignment(Qt.AlignCenter)
         self.setStyleSheet("color: white; font-size: 30px; background: none;")
-        self.setText("key")
 
     def set_key(self, key=""):
         print("key")
@@ -17,4 +16,3 @@ class KeyDisplayer(QLabel):
         if len(curr_text) > 4:
             curr_text = curr_text[-4:]
         self.setText(curr_text + key)
-        # self.setText(key)
