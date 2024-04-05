@@ -5,7 +5,8 @@ import keyboard
 
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import QThread, Qt, pyqtSignal
+from PyQt5.QtGui import QPainter, QPen, QBrush, QPixmap
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDesktopWidget
 
 from ui.CentralWidget import CentralWidget
@@ -17,7 +18,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.setStyleSheet("background-color: rgba(0, 0, 0, 40%)")
+        self.setWindowTitle("Key-caster")
+        self.setStyleSheet("background: #000")
+
         self.setWindowFlags(
             QtCore.Qt.WindowStaysOnTopHint
             | QtCore.Qt.FramelessWindowHint
