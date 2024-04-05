@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt
 class ModKeyDisplayer(QWidget):
     modifier_icons = {
         "shift": "󰘶",
-        "ctrl": "⌃",
+        "ctrl": "󰘴",
         "alt": "⌥",
         "windows": "⌘",
     }
