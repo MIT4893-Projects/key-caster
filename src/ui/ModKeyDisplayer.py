@@ -27,7 +27,6 @@ class ModKeyDisplayer(QWidget):
             self.layout.addWidget(mod)
 
     def set_modifiers(self, modifiers):
-        print("pressing (set)")
         for key, icon in self.modifier_icons.items():
             self.modifiers[key].setText(f'<font color="gray">{icon}</font>')
         for mod in modifiers:
@@ -42,4 +41,3 @@ class ModKeyDisplayer(QWidget):
                 self.modifiers[mod].setText(
                     f'<font color="gray">{self.modifier_icons[mod]}</font>'
                 )
-        print("pressing (reset)")

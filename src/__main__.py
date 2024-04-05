@@ -80,12 +80,9 @@ class Worker(QThread):
                 ):
                     self.mod_dis.set_modifiers(e.modifiers)
                     self.key_dis.set_key(e.name)
-                    print(e.name, e.modifiers)
                 elif len(e.name) > 1 and e.event_type == keyboard.KEY_DOWN:
-                    print("mod pressed")
                     self.mod_dis.set_modifiers((e.name,) + e.modifiers)
                 elif e.event_type == keyboard.KEY_UP:
-                    print("mod released", e.name)
                     self.mod_dis.reset_modifiers((e.name,))
                 last = e
 
