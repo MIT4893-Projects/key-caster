@@ -1,8 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
-from ui.KeyDisplayer import KeyDisplayer
-from ui.ModKeyDisplayer import ModKeyDisplayer
-
 
 class CentralWidget(QWidget):
     def __init__(self, parent, key_dis, mod_dis):

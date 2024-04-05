@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import sys
-import threading
 import keyboard
 
 from PyQt5 import QtCore
