@@ -62,29 +62,38 @@ class Worker(QThread):
 
     def run(self):
         map_keys = {
-            "space": "_",
-            "enter": "󰌑",
-            "backspace": "󰌍",
-            "tab": "󰌒",
+            "space": "󱁐 ",
+            "enter": "󰌑 ",
+            "backspace": "󰌍 ",
+            "tab": "󰌒 ",
         }
+
+        last = keyboard.KeyboardEvent(event_type=keyboard.KEY_UP, scan_code=0)
+
         while True:
-            last = keyboard.KeyboardEvent(event_type=keyboard.KEY_UP, scan_code=0)
-            while True:
-                e = keyboard.read_event()
+            e = keyboard.read_event()
+
+            is_modifier = e.name in keyboard.all_modifiers
+            is_key_down = e.event_type == keyboard.KEY_DOWN
+            is_holding = (
+                is_key_down
+                and last.event_type == keyboard.KEY_DOWN
+                and last.scan_code == e.scan_code
+            )
+
+            print(e.name, e.event_type, last.name, last.event_type)
+
+            if not is_modifier and is_key_down and not is_holding:
                 if e.name in map_keys:
                     e.name = map_keys[e.name]
-                if (
-                    len(e.name) == 1
-                    and e.event_type == keyboard.KEY_DOWN
-                    and e.event_type != last.event_type
-                ):
-                    self.mod_dis.set_modifiers(e.modifiers)
-                    self.key_dis.set_key(e.name)
-                elif len(e.name) > 1 and e.event_type == keyboard.KEY_DOWN:
-                    self.mod_dis.set_modifiers((e.name,) + e.modifiers)
-                elif e.event_type == keyboard.KEY_UP:
-                    self.mod_dis.reset_modifiers((e.name,))
-                last = e
+                self.mod_dis.set_modifiers(e.modifiers)
+                self.key_dis.add_key(e.name)
+            elif is_modifier and is_key_down:
+                self.mod_dis.set_modifiers((e.name,))
+            elif is_modifier and not is_key_down:
+                self.mod_dis.reset_modifiers((e.name,))
+
+            last = e
 
 
 if __name__ == "__main__":
