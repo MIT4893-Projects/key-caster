@@ -80,8 +80,6 @@ class Worker(QThread):
                 and last.scan_code == e.scan_code
             )
 
-            print(e.name, e.event_type, last.name, last.event_type)
-
             if not is_modifier and is_key_down and not is_holding:
                 if e.name in map_keys:
                     e.name = map_keys[e.name]
